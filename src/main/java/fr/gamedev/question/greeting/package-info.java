@@ -1,7 +1,4 @@
 /**
- * @author djer1
- * 
- * Testing
- *
+ * @author djer1 Testing
  */
 package fr.gamedev.question.greeting;

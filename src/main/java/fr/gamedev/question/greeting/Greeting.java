@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.gamedev.question.greeting;
 
 /**
@@ -8,22 +5,40 @@ package fr.gamedev.question.greeting;
  *
  */
 public class Greeting {
-	
-	private final long id;
-	private final String content;
 
-	public Greeting(long id, String content) {
-		this.id = id;
-		this.content = content;
-	}
+    /**
+     * The greeting id.
+     */
+    private final long id;
 
-	public long getId() {
-		return id;
-	}
+    /**
+     * The greeting content.
+     */
+    private final String content;
 
-	public String getContent() {
-		return content;
-	}
+    /**
+     * Gets a new instance of the class {@link Greeting}.
+     *
+     * @param newId      the id of the new instance
+     * @param newContent the content of the new instance
+     */
+    public Greeting(final long newId, final String newContent) {
+        this.id = newId;
+        this.content = newContent;
+    }
 
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @return the content
+     */
+    public String getContent() {
+        return content;
+    }
 
 }

@@ -7,7 +7,6 @@ import fr.gamedev.question.data.Question;
 
 /**
  * @author djer1
- *
  */
 @RepositoryRestResource(collectionResourceRel = "question", path = "question")
 public interface QuestionRepository extends PagingAndSortingRepository<Question, Long> {
