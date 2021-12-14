@@ -57,11 +57,12 @@
 	<!-- <property name="fileExtensions" value="java"/> -->
 	<!-- </module>  -->
 
-	<module name="LineLength">
-		<property name="max" value="120" />
-	</module>
-	
 	<module name="TreeWalker">
+	
+		<module name="LineLength">
+			<property name="max" value="120" />
+		</module>
+	
 		<!-- see : https://checkstyle.sourceforge.io/config_filters.html#SuppressWarningsFilter_Examples -->
 		<module name="SuppressWarningsHolder" />
 
