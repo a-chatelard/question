@@ -21,12 +21,6 @@
 
 	<property name="fileExtensions" value="java, properties" />
 
-	<module name="SuppressionFilter">
-		<property name="file"
-			value="${WORKSPACE}/question/checkstyle/checkstyle-suppressions.xml" />
-		<property name="optional" value="false" />
-	</module>
-
 	<!-- Checks that a package-info.java file exists for each package. -->
 	<!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocPackage -->
 	<module name="JavadocPackage" />
