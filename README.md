@@ -3,6 +3,8 @@ A module for GameDev
 
 Utilise checkstyle et pmd
 
+Et jenkins également
+
 ## Functional
 
 - Question is a simple **text**.
