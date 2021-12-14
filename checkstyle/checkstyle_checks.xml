@@ -23,7 +23,7 @@
 
 	<module name="SuppressionFilter">
 		<property name="file"
-			value="${workspace_loc}/question/checkstyle/checkstyle-suppressions.xml" />
+			value="${WORKSPACE}/question/checkstyle/checkstyle-suppressions.xml" />
 		<property name="optional" value="false" />
 	</module>
 
