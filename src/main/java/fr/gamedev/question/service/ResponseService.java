@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.gamedev.question.data.Answer;
-import fr.gamedev.question.data.User;
 import fr.gamedev.question.data.UserAnswer;
 import fr.gamedev.question.repository.AnswerRepository;
 import fr.gamedev.question.repository.UserAnswerRepository;
-import fr.gamedev.question.repository.UserRepository;
 
 @Service
 public final class ResponseService {
@@ -18,13 +16,7 @@ public final class ResponseService {
     /**
      * Amount of points per good answer.
      */
-    private final int points = 5;
-
-    /**
-     * The User repository.
-     */
-    @Autowired
-    private UserRepository userRepository;
+    private long points = 5;
 
     /**
      * The Answer repository.
@@ -38,34 +30,39 @@ public final class ResponseService {
     @Autowired
     private UserAnswerRepository userAnswerRepository;
 
-    public String handleAnswer(final long questionId, final Boolean userAnswer, final long userId) {
+    public String handleAnswer(final long questionId, final Boolean userResponse, final long userId) {
         Optional<Answer> answer = answerRepository.findByQuestionId(questionId);
 
         if (answer.isEmpty()) {
             return "La question n'a pas été trouvée.";
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<UserAnswer> userAnswer = userAnswerRepository.findFirstByUserIdAndAnswerIdAndPoints(userId,
+                answer.get().getId(), null);
 
-        if (user.isEmpty()) {
-            return "L'utilisateur n'a pas été trouvé.";
+        if (userAnswer.isEmpty()) {
+            return "Cette question n'a pas été posée à l'utilisateur.";
         }
 
         String response = "";
 
-        UserAnswer newUserAnswer = new UserAnswer();
-        newUserAnswer.setAnswer(answer.get());
-        newUserAnswer.setUser(user.get());
+        if (userResponse == answer.get().getCorrectAnswer()) {
+            Optional<UserAnswer> lastGoodAnswer = userAnswerRepository
+                    .findFirstByUserIdAndAnswerIdAndPointsGreaterThanOrderByPoints(userId, answer.get().getId(), 0);
+            if (lastGoodAnswer.isPresent()) {
+                long lastPointsObtained = lastGoodAnswer.get().getPoints();
+                lastPointsObtained /= 2;
+                points = lastPointsObtained;
+            }
+            userAnswer.get().setPoints(points);
 
-        if (userAnswer == answer.get().getCorrectAnswer()) {
-            newUserAnswer.setPoints(points);
             response = "Bravo ! Vous avez trouvé !";
         } else {
-            newUserAnswer.setPoints(0);
+            userAnswer.get().setPoints(0);
             response = "Oops ! Ce n'est pas correct.";
         }
 
-        userAnswerRepository.save(newUserAnswer);
+        userAnswerRepository.save(userAnswer.get());
 
         return response;
     }
