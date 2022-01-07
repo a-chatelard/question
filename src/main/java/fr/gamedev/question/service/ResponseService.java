@@ -15,26 +15,19 @@ import fr.gamedev.question.repository.UserRepository;
 @Service
 public final class ResponseService {
 
-    /**
-     * Amount of points per good answer.
-     */
+    //TODO grp4 by DJE : JavaDoc : Il est possible d'écrirela JavaDoc sur une seul ligne lorsqu'il n'y a pas de paramètre (@author, @param,...)
+    /** Amount of points per good answer.*/
     private final int points = 5;
 
-    /**
-     * The User repository.
-     */
+    /** The User repository.*/
     @Autowired
     private UserRepository userRepository;
 
-    /**
-     * The Answer repository.
-     */
+    /** The Answer repository. */
     @Autowired
     private AnswerRepository answerRepository;
 
-    /**
-     * The UserAnswer repository.
-     */
+    /** The UserAnswer repository. */
     @Autowired
     private UserAnswerRepository userAnswerRepository;
 
@@ -53,6 +46,7 @@ public final class ResponseService {
 
         String response = "";
 
+        //TODO grp4 by DJE : Besoin : vous ne vérifiez pas que la question à été posée à CETTE utilisateur.
         UserAnswer newUserAnswer = new UserAnswer();
         newUserAnswer.setAnswer(answer.get());
         newUserAnswer.setUser(user.get());

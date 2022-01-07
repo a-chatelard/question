@@ -22,13 +22,9 @@ public class User {
      * The user id.
      */
     @GeneratedValue(generator = "seq_gen_user")
-    @GenericGenerator(
-            name = "seq_gen_user",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "seq_user"),
-                    @Parameter(name = "initial_value", value = "0"), @Parameter(name = "increment_size", value = "1")
-            })
+    @GenericGenerator(name = "seq_gen_user", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = { @Parameter(name = "sequence_name", value = "seq_user"),
+                    @Parameter(name = "initial_value", value = "0"), @Parameter(name = "increment_size", value = "1") })
     @Id
     private long id;
 
@@ -36,10 +32,9 @@ public class User {
      * The user tags.
      */
     @ManyToMany
-    @JoinTable(
-            name = "user_tag",
-            joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "user_tag", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    //TODO grp4 by DJE : POO : le code serait plus claire si cet attribut s'appelait "intrests"
     private List<Tag> tags = new ArrayList<>();
 
     /**

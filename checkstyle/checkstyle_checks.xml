@@ -21,9 +21,15 @@
 
 	<property name="fileExtensions" value="java, properties" />
 
+<!-- TODO grp1 by DJE : Eclipse : {project_loc} est mieux car fait référence 
+			au "code source". {workspace_loc} sert pour la "config projet d'eclipse", 
+			le code source n'est pas toujours DANS le Workspace. -->
+		<!-- TODO grp1 by DJE : Eclipse : {project_loc} permet aussi d'éviter de 
+			mettre "en dur" le "dossier" du nom du projet, et est donc plus génériques 
+			(j'ai enlevé le "/question") -->
 	<module name="SuppressionFilter">
 		<property name="file"
-			value="${workspace_loc}/question/checkstyle/checkstyle-suppressions.xml" />
+			value="${project_loc}/checkstyle/checkstyle-suppressions.xml" />
 		<property name="optional" value="false" />
 	</module>
 
