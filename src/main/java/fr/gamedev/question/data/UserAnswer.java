@@ -41,9 +41,9 @@ public class UserAnswer {
     private Answer answer;
 
     /**
-     * The points obtained.
+     * The points obtained. If null, the user didn't answer yet.
      */
-    private long points;
+    private Long points = null;
 
     /**
      * @return the id
